@@ -1,0 +1,7 @@
+*DiaporamaCenter* is intended for estate agents sector, to display business information on store window, through one or more rear projection systems, but it can be used in several other contexts.
+
+
+The main features are the following: 
+ * detection and control of display devices 
+ * slide show generation based on customizable templates, and on local or remote data 
+ * slide show manual or automatic control (through a scheduler)
