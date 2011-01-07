@@ -1,0 +1,51 @@
+<diaporama name="Old" id="diaporama1">
+<diapositive type="old" id="old1">
+<name value="Gingerbread House"/> 
+<image id="GingerbreadHouse.jpg"/> 
+<rooms value="4"/> 
+<price value="2000$"/>
+<description value="This house is good enough to eat. Just come visit it to see how that deal smells good. No trap here !"/>
+</diapositive>
+<diapositive type="old" id="old2">
+<name value="Dracula Castle"/> 
+<image id="DraculaCastle.jpg"/> 
+<rooms value="80"/> 
+<price value="1000000$"/>
+<description value="This castle is a picture of joy of living. This is a real charming place, especially on night. It may bite into your financials, but it worths the price"/>
+</diapositive>
+<diapositive type="old" id="old3">
+<name value="Sleeping Beauty Castle"/> 
+<image id="SleepingBeautyCastle.jpg"/> 
+<rooms value="2"/> 
+<price value="400000$"/>
+<description value="In a very quiet area in a far suburb, this nice place is dedicated to peace and rest. You will never be awake by neighbours"/>
+</diapositive>
+<diapositive type="old" id="old4">
+<name value="Ali Baba Cave"/> 
+<image id="AliBabaCave.jpg"/> 
+<rooms value="1"/> 
+<price value="40000000$"/>
+<description value="One very spacious and richly fitted room, this place provides all the stuff you need. This real estate should be kept secret"/>
+</diapositive>
+<diapositive type="old" id="old5">
+<name value="Straw House"/> 
+<image id="StrawHouse.jpg"/> 
+<rooms value="1"/> 
+<price value="10000$"/>
+<description value="This new concept of environment-friendly and very robust house will seduce you with its cheapest price"/>
+</diapositive>
+<diapositive type="old" id="old6">
+<name value="Wood House"/> 
+<image id="WoodHouse.jpg"/> 
+<rooms value="2"/> 
+<price value="20000$"/> 
+<description value="Hold your breath : this middle price house is all made of wood ! Dont let this opportunity be blown away !"/>
+</diapositive>
+<diapositive type="old" id="old7">
+<name value="Brick House"/> 
+<image id="BrickHouse.jpg"/> 
+<rooms value="3"/> 
+<price value="30000$"/> 
+<description value="You can buy this house a pig in a poke : built in a rock, it is also very comfortable and even provides a big chimney for long winter evenings"/>
+</diapositive>
+</diaporama>

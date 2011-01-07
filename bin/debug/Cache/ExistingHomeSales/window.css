@@ -1,0 +1,71 @@
+#container {
+	width: 768px;
+	height: 576px;
+	background-image: url("border.jpg");
+	background-position: 0% 0%;
+	background-repeat: no-repeat;
+	position: relative;
+	min-height: 100%;
+}
+									
+#content {	
+	padding-top: 60px;
+	padding-left: 70px;
+	width: 630px;
+	height: 476px;
+}
+
+h1 {
+	font-family: "WaltDisney";
+	font-size: 24px;
+	color: pink
+}
+
+@font-face {
+	font-family: "WaltDisney";
+	src: url("wds011402.eot");
+}
+
+#sale_title {
+	height: 1em;
+}
+
+#name {
+	float: left;
+	width:70%;
+}
+
+#rooms {
+	float: left;
+	width: 15%;
+}
+
+#price {
+	float: left;
+	width: 15%;
+	text-align: right;
+}
+
+#sale_content p {
+} 
+
+ .thumbnail {
+	float: left;
+	border: 2px solid #999;
+}
+
+#description {
+	float: left;
+	text-align: justify;
+}
+
+#contact {
+	clear: both;
+}
+
+#footer {
+	width: 768px;
+	position: absolute;
+	bottom: 0;
+}
+

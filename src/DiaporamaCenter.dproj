@@ -1,0 +1,275 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{c5e9a7d0-6fec-48d1-ba17-89ddc6640176}</ProjectGuid>
+			<MainSource>DiaporamaCenter.dpr</MainSource>
+			<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+			<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+			<DCC_DependencyCheckOutputName>..\bin\DiaporamaCenter.exe</DCC_DependencyCheckOutputName>
+			<ProjectVersion>12.0</ProjectVersion>
+			<Config Condition="'$(Config)'==''">Debug</Config>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_DebugDCUs>true</DCC_DebugDCUs>
+			<UsePackages>true</UsePackages>
+			<DCC_UsePackage>CPortLib12;rtl;vcl</DCC_UsePackage>
+			<DCC_DependencyCheckOutputName>DiaporamaCenter.exe</DCC_DependencyCheckOutputName>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<Version>7.0</Version>
+			<DCC_DebugInformation>False</DCC_DebugInformation>
+			<DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_BplOutput>..\lib\debug</DCC_BplOutput>
+			<DCC_DcpOutput>..\lib\debug</DCC_DcpOutput>
+			<DCC_DependencyCheckOutputName>..\bin\debug\DiaporamaCenter.exe</DCC_DependencyCheckOutputName>
+			<Version>7.0</Version>
+			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+			<DCC_ExeOutput>..\bin\debug</DCC_ExeOutput>
+			<DCC_UnitSearchPath>$(BDS)\lib\Debug;$(BDS)\Lib\Debug\Indy10;.\Components\MSXML;.\Components\AFPElog;.\Components\ComPort;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_ResourcePath>$(BDS)\lib\Debug;$(BDS)\Lib\Debug\Indy10;.\Components\MSXML;.\Components\AFPElog;.\Components\ComPort;$(DCC_ResourcePath)</DCC_ResourcePath>
+			<DCC_ObjPath>$(BDS)\lib\Debug;$(BDS)\Lib\Debug\Indy10;.\Components\MSXML;.\Components\AFPElog;.\Components\ComPort;$(DCC_ObjPath)</DCC_ObjPath>
+			<DCC_IncludePath>$(BDS)\lib\Debug;$(BDS)\Lib\Debug\Indy10;.\Components\MSXML;.\Components\AFPElog;.\Components\ComPort;$(DCC_IncludePath)</DCC_IncludePath>
+			<DCC_UNIT_PLATFORM>False</DCC_UNIT_PLATFORM>
+			<DCC_SYMBOL_PLATFORM>False</DCC_SYMBOL_PLATFORM>
+			<DCC_Optimize>False</DCC_Optimize>
+			<DCC_GenerateStackFrames>True</DCC_GenerateStackFrames>
+			<DCC_DebugInfoInExe>True</DCC_DebugInfoInExe>
+			<DCC_DebugVN>True</DCC_DebugVN>
+		</PropertyGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType>VCLApplication</Borland.ProjectType>
+			<BorlandProject>
+				<Delphi.Personality>
+					<Parameters>
+						<Parameters Name="UseLauncher">False</Parameters>
+						<Parameters Name="LoadAllSymbols">True</Parameters>
+						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+					</Parameters>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">True</VersionInfo>
+						<VersionInfo Name="MajorVer">0</VersionInfo>
+						<VersionInfo Name="MinorVer">1</VersionInfo>
+						<VersionInfo Name="Release">0</VersionInfo>
+						<VersionInfo Name="Build">128</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1036</VersionInfo>
+						<VersionInfo Name="CodePage">1252</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName">Novacréa</VersionInfoKeys>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">0.1.0.128</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName">Diaporama</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<Source>
+						<Source Name="MainSource">DiaporamaCenter.dpr</Source>
+					</Source>
+					<Excluded_Packages/>
+				</Delphi.Personality>
+				<ModelSupport>True</ModelSupport>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+		<ItemGroup>
+			<DelphiCompile Include="DiaporamaCenter.dpr">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<DCCReference Include="DiaporamaCenterAgent.pas"/>
+			<DCCReference Include="Devices\DiaporamaDeviceSettings.pas"/>
+			<DCCReference Include="Devices\DiaporamaDevice.pas"/>
+			<DCCReference Include="Devices\DiaporamaDeviceInfo.pas"/>
+			<DCCReference Include="Diaporama\SequenceItem.pas"/>
+			<DCCReference Include="Diaporama\Diaporama.pas"/>
+			<DCCReference Include="Diaporama\DiaporamaEntity.pas"/>
+			<DCCReference Include="Diaporama\DiaporamaSequenceItem.pas"/>
+			<DCCReference Include="Diaporama\Diapositive.pas"/>
+			<DCCReference Include="Diaporama\DiapositiveSequenceItem.pas"/>
+			<DCCReference Include="Diaporama\DiapositiveType.pas"/>
+			<DCCReference Include="Diaporama\Sequence.pas"/>
+			<DCCReference Include="Devices\DisplayMode.pas"/>
+			<DCCReference Include="Repository\HttpDownloader.pas"/>
+			<DCCReference Include="Repository\DiaporamaDownloader.pas"/>
+			<DCCReference Include="Repository\DiaporamaRepository.pas"/>
+			<DCCReference Include="Utils\Logs.pas"/>
+			<DCCReference Include="Utils\DiaporamaUtils.pas"/>
+			<DCCReference Include="Player\DiaporamaForm.pas"/>
+			<DCCReference Include="Player\DiaporamaPlayer.pas"/>
+			<DCCReference Include="Player\WebViewer\WebDiapositiveFrame.pas">
+				<Form>FrameWebDiapositive</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="Player\WebViewer\IntfDocHostUIHandler.pas"/>
+			<DCCReference Include="Player\WebViewer\UContainer.pas"/>
+			<DCCReference Include="Player\WebViewer\UNulContainer.pas"/>
+			<DCCReference Include="Player\ThreadIntf.pas"/>
+			<DCCReference Include="GUI\DiaporamaSettingFrame.pas">
+				<Form>FrameDiaporamaSettings</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="GUI\DiaporamaCenterForm.pas">
+				<Form>frmDiaporamaCenter</Form>
+			</DCCReference>
+			<DCCReference Include="GUI\DiaporamaDeviceFrame.pas">
+				<Form>FrameDiaporamaDevice</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="GUI\DiaporamaPlayerFrame.pas">
+				<Form>FrameDiaporamaPlayer</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="GUI\ComSettingForm.pas">
+				<Form>ComSettingFrm</Form>
+			</DCCReference>
+			<DCCReference Include="GUI\ControlCommandSettingForm.pas">
+				<Form>ControlCommandSettingForm</Form>
+			</DCCReference>
+			<DCCReference Include="Devices\ComSettings.pas"/>
+			<DCCReference Include="Devices\DeviceControl.pas"/>
+			<DCCReference Include="Devices\DeviceControlSettings.pas"/>
+			<DCCReference Include="DiaporamaCenterSettings.pas"/>
+			<DCCReference Include="Scheduler\DiaporamaScheduler.pas"/>
+			<DCCReference Include="Scheduler\ScheduleAction.pas"/>
+			<DCCReference Include="Repository\Downloader.pas"/>
+			<DCCReference Include="Repository\HttpSettings.pas"/>
+			<DCCReference Include="GUI\DiaporamaSchedulerFrame.pas">
+				<Form>FrameDiaporamaScheduler</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="GUI\GUIUtils.pas"/>
+			<DCCReference Include="Scheduler\ScheduleActionList.pas"/>
+			<DCCReference Include="Diaporama\DiaporamaResource.pas"/>
+			<None Include="DiaporamaCenter.todo"/>
+			<None Include="ModelSupport_DiaporamaCenter\ComSettingForm\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\ComSettingForm\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\ComSettings\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\ComSettings\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\ControlCommandSettingForm\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\ControlCommandSettingForm\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DeviceControlCommand\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DeviceControlCommand\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DeviceControlSettings\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DeviceControlSettings\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DeviceControl\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\Diaporama diagram.txvcls"/>
+			<None Include="ModelSupport_DiaporamaCenter\Diaporama sequence diagram.txvcls"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaCenterAgent\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaCenterAgent\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaCenterForm\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaCenterForm\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaCenter\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaCenter\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDeviceControl\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDeviceControl\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDeviceFrame\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDeviceFrame\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDeviceInfo\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDeviceInfo\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDeviceSettings\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDeviceSettings\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDevice\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDevice\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDownloader\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDownloader\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaEntity\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaEntity\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaForm\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaForm\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaPlayerFrame\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaPlayerFrame\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaPlayer\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaPlayer\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaRepository\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaRepository\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaSequenceItem\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaSequenceItem\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaSettingFrame\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaSettingFrame\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaUtils\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaUtils\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\Diaporama\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\Diaporama\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiapositiveSequenceItem\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiapositiveSequenceItem\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiapositiveType\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiapositiveType\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\Diapositive\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\Diapositive\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DisplayMode\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\DisplayMode\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\HttpDownloader\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\HttpDownloader\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\IntfDocHostUIHandler\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\IntfDocHostUIHandler\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\Logs\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\Logs\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\MainForm\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\MainForm\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\MediaFile\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\MediaFile\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\MSXML2_TLB\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\MSXML2_TLB\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\Repository class diagram.txvcls"/>
+			<None Include="ModelSupport_DiaporamaCenter\SequenceItem\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\SequenceItem\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\Sequence\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\Sequence\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\ThreadIntf\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\ThreadIntf\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\UContainer\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\UContainer\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\Unit1\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\Unit1\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\UNulContainer\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\UNulContainer\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\VideoProjector\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\VideoProjector\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\WebDiaporamaFrame\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\WebDiaporamaFrame\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\WebDiapositiveFrame\default.txaPackage"/>
+			<None Include="ModelSupport_DiaporamaCenter\WebDiapositiveFrame\default.txvpck"/>
+			<None Include="ModelSupport_DiaporamaCenter\DiaporamaResource\default.txaPackage"/>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+	</Project>
