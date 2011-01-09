@@ -7,7 +7,7 @@
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<DCC_DependencyCheckOutputName>..\bin\DiaporamaCenter.exe</DCC_DependencyCheckOutputName>
 			<ProjectVersion>12.0</ProjectVersion>
-			<Config Condition="'$(Config)'==''">Debug</Config>
+			<Config Condition="'$(Config)'==''">Release</Config>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
 			<Base>true</Base>
@@ -29,6 +29,11 @@
 			<DCC_DependencyCheckOutputName>DiaporamaCenter.exe</DCC_DependencyCheckOutputName>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_UnitSearchPath>.\Components\MSXML;.\Components\AFPElog;.\Components\ComPort;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_DependencyCheckOutputName>..\bin\release\DiaporamaCenter.exe</DCC_DependencyCheckOutputName>
+			<DCC_ExeOutput>..\bin\release</DCC_ExeOutput>
+			<DCC_BplOutput>..\bin\release</DCC_BplOutput>
+			<DCC_DcpOutput>..\lib\release</DCC_DcpOutput>
 			<Version>7.0</Version>
 			<DCC_DebugInformation>False</DCC_DebugInformation>
 			<DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
@@ -66,10 +71,10 @@
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
 						<VersionInfo Name="AutoIncBuild">True</VersionInfo>
-						<VersionInfo Name="MajorVer">0</VersionInfo>
-						<VersionInfo Name="MinorVer">1</VersionInfo>
+						<VersionInfo Name="MajorVer">1</VersionInfo>
+						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">128</VersionInfo>
+						<VersionInfo Name="Build">2</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -79,14 +84,14 @@
 						<VersionInfo Name="CodePage">1252</VersionInfo>
 					</VersionInfo>
 					<VersionInfoKeys>
-						<VersionInfoKeys Name="CompanyName">Novacréa</VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">0.1.0.128</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.0.0.2</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>
 						<VersionInfoKeys Name="OriginalFilename"/>
-						<VersionInfoKeys Name="ProductName">Diaporama</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductName">DiaporamaCenter</VersionInfoKeys>
 						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
 						<VersionInfoKeys Name="Comments"/>
 					</VersionInfoKeys>
@@ -167,98 +172,6 @@
 			<DCCReference Include="GUI\GUIUtils.pas"/>
 			<DCCReference Include="Scheduler\ScheduleActionList.pas"/>
 			<DCCReference Include="Diaporama\DiaporamaResource.pas"/>
-			<None Include="DiaporamaCenter.todo"/>
-			<None Include="ModelSupport_DiaporamaCenter\ComSettingForm\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\ComSettingForm\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\ComSettings\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\ComSettings\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\ControlCommandSettingForm\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\ControlCommandSettingForm\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DeviceControlCommand\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DeviceControlCommand\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DeviceControlSettings\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DeviceControlSettings\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DeviceControl\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\Diaporama diagram.txvcls"/>
-			<None Include="ModelSupport_DiaporamaCenter\Diaporama sequence diagram.txvcls"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaCenterAgent\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaCenterAgent\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaCenterForm\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaCenterForm\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaCenter\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaCenter\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDeviceControl\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDeviceControl\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDeviceFrame\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDeviceFrame\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDeviceInfo\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDeviceInfo\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDeviceSettings\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDeviceSettings\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDevice\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDevice\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDownloader\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaDownloader\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaEntity\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaEntity\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaForm\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaForm\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaPlayerFrame\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaPlayerFrame\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaPlayer\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaPlayer\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaRepository\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaRepository\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaSequenceItem\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaSequenceItem\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaSettingFrame\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaSettingFrame\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaUtils\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaUtils\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\Diaporama\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\Diaporama\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiapositiveSequenceItem\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiapositiveSequenceItem\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiapositiveType\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiapositiveType\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\Diapositive\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\Diapositive\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DisplayMode\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\DisplayMode\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\HttpDownloader\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\HttpDownloader\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\IntfDocHostUIHandler\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\IntfDocHostUIHandler\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\Logs\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\Logs\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\MainForm\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\MainForm\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\MediaFile\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\MediaFile\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\MSXML2_TLB\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\MSXML2_TLB\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\Repository class diagram.txvcls"/>
-			<None Include="ModelSupport_DiaporamaCenter\SequenceItem\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\SequenceItem\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\Sequence\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\Sequence\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\ThreadIntf\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\ThreadIntf\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\UContainer\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\UContainer\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\Unit1\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\Unit1\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\UNulContainer\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\UNulContainer\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\VideoProjector\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\VideoProjector\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\WebDiaporamaFrame\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\WebDiaporamaFrame\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\WebDiapositiveFrame\default.txaPackage"/>
-			<None Include="ModelSupport_DiaporamaCenter\WebDiapositiveFrame\default.txvpck"/>
-			<None Include="ModelSupport_DiaporamaCenter\DiaporamaResource\default.txaPackage"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
