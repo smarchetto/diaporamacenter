@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{4FB5A5D3-FE64-4D51-8B60-1F863468D344}</ProjectGuid>
 			<MainSource>DsgnCPort12.dpk</MainSource>
-			<Config Condition="'$(Config)'==''">Debug</Config>
+			<Config Condition="'$(Config)'==''">Release</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
 		</PropertyGroup>
@@ -32,6 +32,9 @@
 			<DCC_Platform>x86</DCC_Platform>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_DependencyCheckOutputName>..\..\..\..\lib\release\DsgnCPort12.bpl</DCC_DependencyCheckOutputName>
+			<DCC_BplOutput>..\..\..\..\lib\release</DCC_BplOutput>
+			<DCC_DcpOutput>..\..\..\..\lib\release</DCC_DcpOutput>
 			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
 			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
 			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
