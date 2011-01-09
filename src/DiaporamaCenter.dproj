@@ -23,12 +23,12 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_DebugDCUs>true</DCC_DebugDCUs>
 			<UsePackages>true</UsePackages>
 			<DCC_UsePackage>CPortLib12;rtl;vcl</DCC_UsePackage>
 			<DCC_DependencyCheckOutputName>DiaporamaCenter.exe</DCC_DependencyCheckOutputName>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_DebugDCUs>false</DCC_DebugDCUs>
 			<DCC_UnitSearchPath>.\Components\MSXML;.\Components\AFPElog;.\Components\ComPort;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_DependencyCheckOutputName>..\bin\release\DiaporamaCenter.exe</DCC_DependencyCheckOutputName>
 			<DCC_ExeOutput>..\bin\release</DCC_ExeOutput>
@@ -74,7 +74,7 @@
 						<VersionInfo Name="MajorVer">1</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">2</VersionInfo>
+						<VersionInfo Name="Build">4</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -86,7 +86,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName"/>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">1.0.0.2</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.0.0.4</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>
@@ -172,6 +172,7 @@
 			<DCCReference Include="GUI\GUIUtils.pas"/>
 			<DCCReference Include="Scheduler\ScheduleActionList.pas"/>
 			<DCCReference Include="Diaporama\DiaporamaResource.pas"/>
+			<None Include="ModelSupport_DiaporamaCenter\default.txaPackage"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
