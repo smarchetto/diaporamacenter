@@ -134,7 +134,7 @@ const
   cstDiapositiveNoContentError =
     'Slide of ID ''%s'' and type ''%s'' has no content';
   cstDiapositiveTypeNotFoundError =
-    'Cannot find type ''%s'' of slide of ID ''%s'' type ''%s''';
+    'Cannot find type ''%s'' of slide of ID ''%s''';
 
 constructor TDiaporamaPlayer.Create(const aDiaporamaDevice: TDiaporamaDevice;
   const aRepository: TDiaporamaRepository;
@@ -360,7 +360,7 @@ begin
         FDiapositiveStatus := dsError;
 
         LogEvent(Self.ClassName, ltError, Format(cstDiapositiveTypeNotFoundError,
-            [aDiapositive.ID, aDiapositive.TypeName]));
+            [aDiapositive.TypeName, aDiapositive.ID]));
       end;
 
       FDiapositiveStatus := dsPreparing;
@@ -369,7 +369,7 @@ begin
         FDiapositiveStatus := dsError;
 
         LogEvent(Self.ClassName, ltError, Format(cstDiapositiveNoContentError,
-          [aDiapositive.ID, aDiapositive.DiapositiveType.Name]));
+          [aDiapositive.ID, aDiapositive.TypeName]));
       end;
 
       // TODO : default diapositive ?
