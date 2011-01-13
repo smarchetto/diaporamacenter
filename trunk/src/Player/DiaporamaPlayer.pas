@@ -414,6 +414,9 @@ begin
     // Prevent system standby
     SetThreadExecutionState(ES_SYSTEM_REQUIRED or ES_DISPLAY_REQUIRED);
 
+    // On attend
+    Sleep(DELTA_TIME);
+
     if DisplayTimeElapsed then
     begin
       // TODO : what if diapositive is not prepared ?
@@ -426,9 +429,6 @@ begin
       // TODO : prepare N+2 diapositive if N+1 is bad
       PrepareDiapositive;
     end;
-
-    // On attend
-    Sleep(DELTA_TIME);
   end;
 
   coUninitialize;
