@@ -215,7 +215,7 @@ begin
 
   // Load list of templates
   TDiapositiveType.TemplatePath := GetTemplatePath;
-  TDiapositiveType.LoadTypeListFromXML(FSettings.TypeFilePath);
+  TDiapositiveType.LoadTypeListFromXML(ExpandFileName(FSettings.TypeFilePath));
 
   // Schedule ourself
   Scheduler.RegisterSource(Self);
@@ -286,7 +286,7 @@ end;
 
 function TDiaporamaCenterAgent.GetDevicePath: string;
 begin
-  Result := FSettings.DevicePath;
+  Result := ExpandFileName(FSettings.DevicePath);
 
   if (Result<>'') and not DirectoryExists(Result) then
     ForceDirectories(Result);
@@ -294,7 +294,7 @@ end;
 
 function TDiaporamaCenterAgent.GetTemplatePath: string;
 begin
-  Result := FSettings.TemplatePath;
+  Result := ExpandFileName(FSettings.TemplatePath);
 
   if (Result<>'') and not DirectoryExists(Result) then
     ForceDirectories(Result);
