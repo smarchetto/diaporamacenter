@@ -157,7 +157,7 @@ end;
 
 function TDiaporamaRepository.GetRepositoryPath: string;
 begin
-  Result := FDiaporamaCenterSettings.RepositoryPath;
+  Result := ExpandFileName(FDiaporamaCenterSettings.RepositoryPath);
 
   if (Result<>'') and not DirectoryExists(Result) then
     ForceDirectories(Result);
@@ -195,7 +195,7 @@ end;
 
 function TDiaporamaRepository.GetDiaporamaPath(const diaporamaID: string): string;
 begin
-  Result := FDiaporamaCenterSettings.RepositoryPath + diaporamaID + '.xml';
+  Result := GetRepositoryPath + diaporamaID + '.xml';
 end;
 
 function TDiaporamaRepository.LoadDiaporama(
@@ -244,18 +244,23 @@ begin
 end;
 
 function TDiaporamaRepository.LoadDiaporamaList: TDiaporamaList;
+var
+  diaporamaListFilePath: string;
 begin
   Result := nil;
 
   FDiaporamaDownloaders.Clear;
 
-  if not FileExists(FDiaporamaCenterSettings.DiaporamaListFilePath) then
+  diaporamaListFilePath :=
+    ExpandFileName(FDiaporamaCenterSettings.DiaporamaListFilePath);
+
+  if not FileExists(diaporamaListFilePath) then
   begin
     if not DownloadDiaporamaList then
       Exit;
   end;
 
-  if FDiaporamas.LoadFromXML(FDiaporamaCenterSettings.DiaporamaListFilePath) then
+  if FDiaporamas.LoadFromXML(diaporamaListFilePath) then
     Result := FDiaporamas;
 
   CreateDiaporamaDownloaders;
