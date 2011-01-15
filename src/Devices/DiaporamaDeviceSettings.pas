@@ -18,12 +18,12 @@ type
     FDeviceInfo: TDiaporamaDeviceInfo;
     // Display mode
     FDisplayMode: TDisplayMode;
-    // Location (not used yet)
-    FLocation: string;
-    // Control settings
+    // Videoprojector control settings
     FControlSettings: TDeviceControlSettings;
     // Configuration file name
     FFileName: string;
+    // Full screen
+    FFullScreen: boolean;
 
     function GetFileName: string;
 
@@ -42,12 +42,13 @@ type
     property DeviceInfo: TDiaporamaDeviceInfo read FDeviceInfo;
 
     property DisplayMode: TDisplayMode read FDisplayMode;
-    property FileName: string read GetFileName write FFileName;
+
+    property FullScreen: boolean read FFullScreen write FFullScreen;
 
     property ControlSettings: TDeviceControlSettings
       read FControlSettings;
 
-    property Location: string read FLocation write FLocation;
+    property FileName: string read GetFileName write FFileName;
   end;
 
 implementation
@@ -57,11 +58,9 @@ uses
   DiaporamaUtils;
 
 const
-  cstDiaporamaDevice = 'DiaporamaDevice';
-  cstName = 'Name';
-  cstPowerOnTime = 'PowerOnTime';
-  cstPowerOffTime = 'PowerOffTime';
-  cstAutoPower = 'AutoPower';
+  cstXMLNodeDiaporamaDevice = 'DiaporamaDevice';
+  cstXMLNodeName = 'Name';
+  cstXMLNodeFullScreen = 'FullScreen';
 
 constructor TDiaporamaDeviceSettings.Create;
 begin
@@ -69,8 +68,8 @@ begin
   FFileName := '';
   FDeviceInfo := TDiaporamaDeviceInfo.Create;
   FDisplayMode := TDisplayMode.Create;
+  FFullScreen := false;
   FControlSettings := TDeviceControlSettings.Create;
-  FLocation := '';
 end;
 
 destructor TDiaporamaDeviceSettings.Destroy;
@@ -87,14 +86,13 @@ begin
   FName := deviceSettings.Name;
   FFileName := deviceSettings.FileName;
 
-  // TODO : Doit on assigner le deviceInfo dans le Assign de DeviceSettings
   FDeviceInfo.Assign(deviceSettings.DeviceInfo);
   
   FDisplayMode.Assign(deviceSettings.DisplayMode);
 
-  FControlSettings.Assign(deviceSettings.ControlSettings);
+  FFullScreen := deviceSettings.FullScreen;
 
-  FLocation := deviceSettings.Location;
+  FControlSettings.Assign(deviceSettings.ControlSettings);
 end;
 
 function TDiaporamaDeviceSettings.Equals(anObject: TObject): Boolean;
@@ -108,8 +106,8 @@ begin
       SameText(FName, deviceSettings.Name) and
       SameText(FFileName, deviceSettings.FileName) and
       FDisplayMode.Equals(deviceSettings.DisplayMode) and
-      FControlSettings.Equals(deviceSettings.ControlSettings);
-      //(SameText(FLocation, deviceSettings.Location);
+      FControlSettings.Equals(deviceSettings.ControlSettings) and
+      (FFullScreen = deviceSettings.FullScreen);
   end else
     Result := false;
 end;
@@ -138,7 +136,7 @@ begin
     raise Exception.Create(Format('Cannot find configuration file %s',
       [xmlFilePath]));
 
-  // Nom de fichier
+  // File name
   FFileName := ExtractFileName(xmlFilePath);
 
   xmlDocument := coDomDocument40.Create;
@@ -146,20 +144,23 @@ begin
 
   if xmlDocument.ParseError.ErrorCode=0 then
   begin
-    // Noeud DiaporamaDevice
-    if SameText(xmlDocument.DocumentElement.NodeName, cstDiaporamaDevice) then
+    // DiaporamaDevice node
+    if SameText(xmlDocument.DocumentElement.NodeName, cstXMLNodeDiaporamaDevice) then
     begin
-      // Nom
-      FName := getNodeValue(xmlDocument.DocumentElement,
-        cstName);
+      // Name
+      FName := getNodeValue(xmlDocument.DocumentElement, cstXMLNodeName);
 
-      // Informations de périphérique
+      // Infos
       FDeviceInfo.LoadFromXML(xmlDocument.DocumentElement);
 
-      // Lecture des du mode d'affichage
+      // Display mode
       FDisplayMode.LoadFromXML(xmlDocument.DocumentElement);
 
-      // Paramétrage lié au controle de videoprojecteur
+      // Full screen
+      FFullScreen := GetNodeValueAsBoolean(xmlDocument.DocumentElement,
+        cstXMLNodeFullScreen, false);
+
+      // Videoprojector control settings
       FControlSettings.LoadFromXML(xmlDocument.DocumentElement);
 
       Result := True;
@@ -174,20 +175,22 @@ begin
   xmlDocument := coDomDocument40.Create;
   xmlDocument.Async := False;
 
-  // Racine
-  xmlDocument.documentElement := xmlDocument.createElement(cstDiaporamaDevice);
+  xmlDocument.documentElement := xmlDocument.createElement(cstXMLNodeDiaporamaDevice);
 
-  // Nom
-  setNodeValue(xmlDocument,
-    xmlDocument.DocumentElement, cstName, FName);
+  // Name
+  setNodeValue(xmlDocument, xmlDocument.DocumentElement, cstXMLNodeName, FName);
 
-  // Informations de périphérique
+  // Device infos
   FDeviceInfo.SaveToXML(xmlDocument, xmlDocument.DocumentElement);
 
-  // Lecture des du mode d'affichage
+  // Display mode
   FDisplayMode.SaveToXML(xmlDocument, xmlDocument.DocumentElement);
 
-  // Paramétrage lié au controle de videoprojecteur
+  // Full screen
+  SetNodeValue(xmlDocument, xmlDocument.DocumentElement,
+    cstXMLNodeFullScreen, BoolToStr(FFullScreen));
+
+  // Videoprojector control settings
   FControlSettings.SaveToXML(xmlDocument, xmlDocument.DocumentElement);
 
   xmlDocument.save(xmlFilePath);

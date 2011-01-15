@@ -214,8 +214,8 @@ var
   aEdit: TEdit;
   aComboBox: TComboBox;
   aButton: TButton;
+  aCheckBox: TCheckBox;
   y: Integer;
-
 begin
   if not Assigned(diaporamaDevice) then
     Exit;
@@ -256,6 +256,11 @@ begin
   aComboBox.TabOrder := 1;
   aComboBox.OnChange := UpdateFromGUI;
 
+  Inc(y, DELTA_TOP1);
+  aCheckBox := CreateCheckBox(tabsheet, 'cbDeviceFullScreen', 'Full screen:', LEFT2, y);
+  aCheckBox.TabOrder := 2;
+  aCheckBox.OnClick := UpdateFromGUI;
+
   // Power commands
   Inc(y, DELTA_TOP2);
   CreateLabel(tabsheet, 'lblPower', 'Power off/on', LEFT1, y, True);
@@ -268,7 +273,7 @@ begin
   aButton := CreateButton(tabsheet, 'btnPower', 'Power on/off', LEFT2, y-5,
     88, nil);
   aButton.OnClick := btnPowerClick;
-  aButton.TabOrder := 2;
+  aButton.TabOrder := 3;
 
   // Device control
   Inc(y, DELTA_TOP2);
@@ -277,12 +282,12 @@ begin
   Inc(y, DELTA_TOP2);
   aButton := CreateButton(tabsheet, 'btnComSettings', 'RS232 port...', LEFT2, y, 100, nil);
   aButton.OnClick := btnComSettingsClick;
-  aButton.TabOrder := 3;
+  aButton.TabOrder := 4;
 
   aButton := CreateButton(tabsheet, 'btnCommandSettings', 'Control commands...',
     LEFT2+120, y, 160, nil);
   aButton.OnClick := btnCommandSettingsClick;
-  aButton.TabOrder := 4;
+  aButton.TabOrder := 5;
 
   // Configuration file
   Inc(y, DELTA_TOP3);
@@ -293,7 +298,7 @@ begin
   CreateLabel(tabsheet, 'lblSettingFileName', 'File name:', LEFT2, y);
 
   aEdit := CreateEdit(tabsheet, 'edDeviceSettingFileName', '<Name>', LEFT3, y-3, 180);
-  aEdit.TabOrder := 5;
+  aEdit.TabOrder := 6;
   aEdit.OnChange := UpdateFromGUI;
 end;
 
@@ -316,6 +321,7 @@ var
   aLabel: TLabel;
   aEdit: TEdit;
   aComboBox: TComboBox;
+  aCheckBox: TCheckBox;
 begin
   tabIndex := GetTabSheetIndex(diaporamaDevice);
 
@@ -339,6 +345,11 @@ begin
   aComboBox := TComboBox(getControlByName(PageControl, tabIndex,
     'cmbDeviceDisplayMode'));
   FillComboDisplayMode(diaporamaDevice, aComboBox);
+
+  aCheckBox := TCheckBox(getControlByName(PageControl, tabIndex,
+    'cbDeviceFullScreen'));
+  if Assigned(aCheckBox) then
+    aCheckBox.Checked := diaporamaDevice.Settings.FullScreen;
 
   aEdit := TEdit(getControlByName(PageControl, tabIndex,
     'edDeviceSettingFileName'));
@@ -428,6 +439,7 @@ var
   edDeviceName, edDeviceFileName: TEdit;
   aComboBox: TComboBox;
   displayMode: TDisplayMode;
+  aCheckBox: TCheckBox;
 begin
   editedSettings := GetEditedSettings;
   if not Assigned(editedSettings) then
@@ -451,6 +463,11 @@ begin
     displayMode := GetDisplayMode(aComboBox);
     editedSettings.DisplayMode.Assign(displayMode);
   end;
+
+  aCheckBox := TCheckBox(getControlByName(PageControl, PageControl.TabIndex,
+    'cbDeviceFullScreen'));
+  if Assigned(aCheckBox) then
+    editedSettings.FullScreen := aCheckBox.Checked;
 end;
 
 (*procedure TFrameDiaporamaDevice.RefreshAutoPowerGUI(Sender: TObject);
