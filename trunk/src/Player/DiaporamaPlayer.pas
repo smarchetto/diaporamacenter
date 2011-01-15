@@ -147,6 +147,7 @@ begin
   FRepository := aRepository;
 
   FDiaporamaForm := TDiaporamaForm.CreateNew(nil);
+  FDiaporamaForm.InitialFullScreen := aDiaporamaDevice.Settings.FullScreen;
   FDiaporamaForm.OnChange := OnFormChangeExecute;
   FDiaporamaForm.OnClose := OnFormCloseExecute;
 

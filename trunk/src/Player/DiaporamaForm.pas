@@ -18,6 +18,7 @@ type
     FOnCloseEvent: TNotifyEvent;
 
     FFullScreen: Boolean;
+    FInitialFullScreen: boolean;
 
     procedure SetFullScreen;
     procedure UnsetFullScreen;
@@ -48,6 +49,8 @@ type
 
     property OnChange: TNotifyEvent read GetOnChangeEvent
       write SetOnChangeEvent;
+
+    property InitialFullScreen: boolean read FFullScreen write FFullScreen;
   end;
 
 implementation
@@ -68,6 +71,7 @@ begin
   inherited OnClose := OnCloseExecute;
 
   FFullScreen := False;
+  FInitialFullScreen := False;
 end;
 
 destructor TDiaporamaForm.Destroy;
@@ -153,7 +157,8 @@ end;
 procedure TDiaporamaForm.Show;
 begin
   inherited;
-  //SetFullScreen;
+  if InitialFullScreen then
+    SetFullScreen;
   FWebDiapositiveFrame.Show;
 end;
 
@@ -168,11 +173,11 @@ begin
   FWebDiapositiveFrame.Display;
 end;
 
-
 procedure TDiaporamaForm.OnCloseExecute(Sender: TObject;
   var Action: TCloseAction);
 begin
-  UnsetFullScreen;
+  if FFullScreen then
+    UnsetFullScreen;
   if Assigned(FOnCloseEvent) then
     FOnCloseEvent(Self);
 end;
