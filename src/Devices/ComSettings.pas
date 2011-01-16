@@ -6,13 +6,17 @@ uses
   Classes, CPort, CPortTypes, MSXML2_TLB;
 
 type
+  TComSettings = class;
+
+  TComSettingsChangeEvent = procedure(const settings: TComSettings) of object;
+
   // Port COM settings
   TComSettings = class(TBaseComPort)
   protected
     FTimeOutConstant: Integer;
     FTimeOutPerChar: Integer;
 
-    FOnChangeEvent: TNotifyEvent;
+    FOnChangeEvent: TComSettingsChangeEvent;
 
     procedure SetPort(const value: TPort);
     procedure SetBaudRate(const value: TBaudRate);
@@ -44,7 +48,7 @@ type
     property DataBits: TDataBits read FDataBits write SetDataBits;
     property FlowControl: TFlowControl read GetFlowControl write SetFlowControl;
 
-    property OnChange: TNotifyEvent read FOnChangeEvent write FOnChangeEvent;
+    property OnChange: TComSettingsChangeEvent read FOnChangeEvent write FOnChangeEvent;
   end;
 
 implementation
