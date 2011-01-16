@@ -235,18 +235,12 @@ type
     FEventThreadPriority: TThreadPriority;
     FHasLink: Boolean;
     FConnected: Boolean;
-    FBaudRate: TBaudRate;
     FCustomBaudRate: Integer;
-    FPort: TPort;
-    FStopBits: TStopBits;
-    FDataBits: TDataBits;
     FDiscardNull: Boolean;
     FEventChar: Char;
     FEvents: TComEvents;
     FBuffer: TComBuffer;
-    FParity: TComParity;
     FTimeouts: TComTimeouts;
-    FFlowControl: TComFlowControl;
     FSyncMethod: TSyncMethod;
     FStoredProps: TStoredProps;
     FOnRxChar: TRxCharEvent;
@@ -1658,9 +1652,7 @@ begin
   CportCleanupAsync(FReadAsyncPtr);
   CportCleanupAsync(FWriteAsyncPtr);
   FBuffer.Free;
-  FFlowControl.Free;
   FTimeouts.Free;
-  FParity.Free;
   FLinks.Free; // why was this AFTER destroy?
   inherited Destroy;
 

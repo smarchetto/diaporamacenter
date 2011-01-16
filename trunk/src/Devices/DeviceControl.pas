@@ -3,28 +3,27 @@ unit DeviceControl;
 interface
 
 uses
-  CPort, DeviceControlSettings;
+  CPort, ComSettings, DeviceControlSettings;
 
 type
   TControlType = (ctVGA, ctCom);
 
   TPowerStatus = (psUnknown, psOn, psOff);
 
-  // Class to control a device display (power on/off) by sending commands on COM port
+  // Class to control a device display through a COM connection
+  // (such as videorojectors), used by application to power/off the device
   TDeviceControl = class
     private
       FComPort: TComPort;
       FSettings: TDeviceControlSettings;
       FPowerStatus: TPowerStatus;
 
-      procedure OnSettingChangeExecute(Sender: TObject);
-
-      procedure SetSettings(const someSettings: TDeviceControlSettings);
+      procedure OnComSettingsChangeExecute(const settings: TComSettings);
 
       function SendToComPort(const printableCode: string;
         out returnCode: string): Boolean;
     public
-      constructor Create(const someSettings: TDeviceControlSettings);
+      constructor Create(const settings: TDeviceControlSettings);
       destructor Destroy; override;
 
       function PowerOn: Boolean;
@@ -35,22 +34,19 @@ type
         printableAcknowledgeCode: string): Boolean;
 
       property PowerStatus: TPowerStatus read GetPowerStatus;
-      property Settings: TDeviceControlSettings read FSettings
-        write SetSettings;
   end;
-                        
+
 implementation
 
 uses
   SysUtils, Logs;
 
-constructor TDeviceControl.Create(
-  const someSettings: TDeviceControlSettings);
+constructor TDeviceControl.Create(const settings: TDeviceControlSettings);
 begin
   FComPort := TComPort.Create(nil);
-
-  SetSettings(someSettings);
-
+  FSettings := settings;
+  if Assigned(settings) then
+    settings.ComSettings.OnChange := OnComSettingsChangeExecute;
   FPowerStatus := psUnknown;
 end;
 
@@ -60,36 +56,23 @@ begin
   inherited;
 end;
 
-procedure TDeviceControl.SetSettings(const someSettings: TDeviceControlSettings);
+procedure TDeviceControl.OnComSettingsChangeExecute(
+  const settings: TComSettings);
 begin
-  if Assigned(someSettings) then
+  if Assigned(settings) then
   begin
-    FSettings := someSettings;
-    FSettings.ComSettings.OnChange := OnSettingChangeExecute;
-  end;
-end;
-
-procedure TDeviceControl.OnSettingChangeExecute(Sender: TObject);
-begin
-  if Assigned(FSettings) then
-  begin
-    FComPort.Port := FSettings.ComSettings.Port;
-    FComPort.BaudRate := FSettings.ComSettings.BaudRate;
-    FComPort.DataBits := FSettings.ComSettings.DataBits;
-    FComPort.StopBits := FSettings.ComSettings.StopBits;
-    FComPort.Parity.Bits := FSettings.ComSettings.ParityBits;
-    FComPort.FlowControl.FlowControl :=
-      FSettings.ComSettings.FlowControl;
+    FComPort.Port := settings.Port;
+    FComPort.BaudRate := settings.BaudRate;
+    FComPort.DataBits := settings.DataBits;
+    FComPort.StopBits := settings.StopBits;
+    FComPort.Parity.Bits := settings.ParityBits;
+    FComPort.FlowControl.FlowControl := settings.FlowControl;
 
     // Timeout constants for COM dialog
-    FComPort.Timeouts.ReadTotalMultiplier :=
-      FSettings.ComSettings.TimeOutPerChar;
-    FComPort.Timeouts.ReadTotalConstant :=
-      FSettings.ComSettings.TimeOutConstant;
-    FComPort.Timeouts.WriteTotalMultiplier :=
-      FSettings.ComSettings.TimeOutPerChar;
-    FComPort.Timeouts.WriteTotalConstant :=
-      FSettings.ComSettings.TimeOutConstant;
+    FComPort.Timeouts.ReadTotalMultiplier := settings.TimeOutPerChar;
+    FComPort.Timeouts.ReadTotalConstant := settings.TimeOutConstant;
+    FComPort.Timeouts.WriteTotalMultiplier := settings.TimeOutPerChar;
+    FComPort.Timeouts.WriteTotalConstant := settings.TimeOutConstant;
   end;
 end;
 
