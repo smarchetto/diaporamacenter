@@ -1,0 +1,14 @@
+#summary System requirements needed by DiaporamaCenter application
+
+*Operating System*
+ * Windows XP SP2
+ * Windows Vista
+ * Windows 7
+with Internet Explorer 6, 7, or 8 installed
+
+*Minimum hardware*
+ * 800 MHz Pentium III or Athlon
+ * 256 MB RAM 
+ * 25 MB hard drive space
+
+An internet connection is required to play diaporamas that donwload content from a web site.
