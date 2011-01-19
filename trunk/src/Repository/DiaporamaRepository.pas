@@ -21,6 +21,7 @@ type
     FDiaporamaCenterSettings: TDiaporamaCenterSettings;
 
     function GetRepositoryPath: string;
+    function GetDiaporamaListFilePath: string;
 
     function GetDiaporamas: TEnumerable<TDiaporama>;
     function GetDiaporama(const index: integer): TDiaporama;
@@ -163,6 +164,16 @@ begin
     ForceDirectories(Result);
 end;
 
+function TDiaporamaRepository.GetDiaporamaListFilePath: string;
+var
+  diaporamaListDir: string;
+begin
+  Result := ExpandFileName(FDiaporamaCenterSettings.DiaporamaListFilePath);
+  diaporamaListDir := ExtractFileDir(Result);
+  if not DirectoryExists(diaporamaListDir) then
+    ForceDirectories(diaporamaListDir);
+end;
+
 function TDiaporamaRepository.GetDiapositiveFilePath(
   const aDiapositive: TDiapositive): string;
 var
@@ -236,8 +247,7 @@ begin
     aDownloader := CreateDownloader(dtHttp, FDiaporamaCenterSettings);
 
     if Assigned(aDownloader) then
-      Result := aDownloader.DownloadDiaporamaList(
-        FDiaporamaCenterSettings.DiaporamaListFilePath);
+      Result := aDownloader.DownloadDiaporamaList(GetDiaporamaListFilePath);
   finally
     aDownloader.Free;
   end;
@@ -251,8 +261,7 @@ begin
 
   FDiaporamaDownloaders.Clear;
 
-  diaporamaListFilePath :=
-    ExpandFileName(FDiaporamaCenterSettings.DiaporamaListFilePath);
+  diaporamaListFilePath := GetDiaporamaListFilePath;
 
   if not FileExists(diaporamaListFilePath) then
   begin
