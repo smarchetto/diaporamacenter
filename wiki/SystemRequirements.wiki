@@ -4,8 +4,6 @@
  * Windows 7
 with Internet Explorer 6, 7, or 8 installed
 
-
-
 *Minimum Hardware*
  * 800 MHz Pentium III or Athlon
  * 256 MB RAM 
