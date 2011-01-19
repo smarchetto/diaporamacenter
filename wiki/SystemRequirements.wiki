@@ -1,5 +1,3 @@
-#summary System requirements needed by DiaporamaCenter application
-
 *Operating System*
  * Windows XP SP2
  * Windows Vista
