@@ -1,5 +1,3 @@
-#sidebar TableOfContents
-
 *Operating System*
  * Windows XP SP2
  * Windows Vista
