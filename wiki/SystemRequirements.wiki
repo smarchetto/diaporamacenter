@@ -1,3 +1,5 @@
+#summary What you need to install DiaporamCenter
+
 *Operating System*
  * Windows XP SP2
  * Windows Vista
