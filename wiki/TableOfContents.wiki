@@ -1,3 +1,3 @@
-* [Screenshots screenshots]
-* [SystemRequirements system requirements]
-* [Installation installation]
+ * [Screenshots screenshots]
+ * [SystemRequirements system requirements]
+ * [Installation installation]
