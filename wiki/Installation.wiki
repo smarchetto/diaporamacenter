@@ -1,5 +1,3 @@
-#sidebar TableOfContents
-
 There is no setup file yet, but the installation is quite easy.
 
  # Extract the DiaporamaCenter 7z archive into the folder of your choice
