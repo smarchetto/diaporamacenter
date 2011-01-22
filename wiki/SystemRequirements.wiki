@@ -9,4 +9,4 @@ with Internet Explorer 6, 7, or 8 installed
  * 256 MB RAM 
  * 25 MB hard drive space
 
-Note: an internet connection is required to play diaporamas that donwload content from a web site.
+Note: an internet connection is recommended, since diaporamas can download content from a web site.
