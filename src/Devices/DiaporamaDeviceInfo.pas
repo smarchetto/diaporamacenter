@@ -5,6 +5,9 @@ interface
 uses
   Classes, MSXML2_TLB;
 
+const
+  EDID_SIZE = 256;
+
 type
   TDPMSCapability = (capPowerOnOff, capStandby, capSuspend);
   TDPMSCapabilities = set of TDPMSCapability;
@@ -31,6 +34,8 @@ type
     property PnpID: string read GetPnpID;
   end;
 
+  TEDID = array[0..EDID_SIZE-1] of Byte;
+
   // Class to retrive display device infos (manufacturer, model, serial...)
   // Informations are extracted from the EDID of device
   // (Extended Display Identification Data) stored in the Windows registry
@@ -49,20 +54,18 @@ type
     // DPMS disponibles (power on / standby by VGA cable)
     FDPMSCapabilities: TDPMSCapabilities;
 
-    function FindDeviceInfo(const vesaID, pnpID: string): Boolean; overload;
-    function GetDisplayDeviceIDs(const videoDeviceName: string): TStringList;
-    function FindPnpID(const vesaID, driver: string): string;
+    function ExtractDeviceInfo(const anEDID: TEDID): Boolean;
 
-    // Checks the device is a display device
-    function IsDisplayDevice(const vesaID, pnpID: string): Boolean;
-    // Checks the device is active
-    function IsActiveDisplayDevice(const vesaID, pnpID: string): Boolean;
+    function GetDisplayDeviceIDs(const videoDeviceName: string): TStringList;
+    function ParseDeviceID(const deviceID: string;
+      out aVesaID, aDriver: string): Boolean;
+    function FindPnpID(const aVesaID, aDriver: string): string;
+
+    // Checks the device is a display device and active
+    function IsActiveDisplayDevice(const aVesaID, aPnpID: string): Boolean;
 
     // Retrives the EDID given the device Vesa ID and Plug'nPlay ID
-    function GetDisplayDeviceEDID(const vesaID, pnpID: string): ansistring;
-    // Parses the EDID string
-    function ParseDeviceID(const deviceID: string;
-      out vesaID, driver: string): Boolean;
+    function GetDisplayDeviceEDID(const aVesaID, aPnpID: string): TEDID;
 
     // IDiaporamaDeviceInfo
     function GetModel: string;
@@ -87,8 +90,8 @@ type
     function SaveToXML(const xmlDocument: IXMLDomDocument;
       const parentNode: IXmlDomNode): Boolean;
 
-    property VesaID: string read GetVesaID;
-    property PnpID: string read GetPnpID;
+    //property VesaID: string read GetVesaID;
+    //property PnpID: string read GetPnpID;
 
     // IDiaporamaDeviceInfo
     property Model: string read GetModel;
@@ -110,16 +113,17 @@ const
   cstNodeVesaID = 'VesaID';
   cstNodePnpID = 'PnpID';
 
-  cstDriver = 'Driver';
-
   DISPLAY_DEVICE_ACTIVE = 1;
 
-  ENUM_DISPLAY_KEY = 'SYSTEM\CurrentControlSet\Enum\DISPLAY\%s';
+  cstMonitor = 'Monitor';
+
+  ENUM_DISPLAY_KEY = 'SYSTEM\CurrentControlSet\Enum\DISPLAY';
   HARDWARE_ID_VALUE = 'HardwareID';
+  DRIVER_VALUE = 'Driver';
   CONTROL_KEY = 'Control';
   DEVICE_PARAMETERS_KEY = 'Device Parameters';
   EDID_VALUE = 'EDID';
-  EDID_SIZE = 256;
+
 
 type
   // Record containing device ID
@@ -182,14 +186,26 @@ begin
   end;
 end;
 
+function EDIDToString(const anEDID: TEDID): string;
+var
+  i: Integer;
+begin
+  Result := '';
+  for i := 0 to EDID_SIZE-1 do
+  begin
+    Result := Result + IntToHex(anEDID[i],16);
+  end;
+end;
+
 // Function parsing the EDID string
 // Returns data that contained in one of the four descriptor block
 // which prefix matches the tag given in argument
-function GetDescriptorBlockFromEDID(const EDID: ansistring;
+function GetDescriptorBlockFromEDID(const EDID: TEDID;
   const tag: ansistring): ansistring;
 var
   descriptorBlock: array[0..3] of ansistring;
   foundBlock: ansistring;
+  i: integer;
 begin
   Result := '';
 
@@ -197,10 +213,12 @@ begin
   //36 48 5A and 6C each block is 18 bytes long
   //the model and serial numbers are stored in the vesa descriptor
   //blocks in the edid
-  descriptorBlock[0] := Copy(EDID, $36+1, 18);
-  descriptorBlock[1] := Copy(EDID, $48+1, 18);
-  descriptorBlock[2] := Copy(EDID, $5A+1, 18);
-  descriptorBlock[3] := Copy(EDID, $6C+1, 18);
+  for i := 0 to 3 do
+    SetLength(descriptorBlock[i], 18);
+  CopyMemory(@descriptorBlock[0][1], @EDID[$36], 18);
+  CopyMemory(@descriptorBlock[1][1], @EDID[$48], 18);
+  CopyMemory(@descriptorBlock[2][1], @EDID[$5A], 18);
+  CopyMemory(@descriptorBlock[3][1], @EDID[$6C], 18);
 
   {showMessage(Format('block[0] = %s', [ByteToStr(descriptorBlock[0])]));
   showMessage(Format('block[1] = %s', [ByteToStr(descriptorBlock[1])]));
@@ -236,12 +254,12 @@ begin
     Result := AnsiStrings.AnsiRightStr(Result, Length(Result)-1)
 end;
 
-function GetDPMSCapabilitiesFromEDID(const EDID: ansistring): TDPMSCapabilities;
+function GetDPMSCapabilitiesFromEDID(const EDID: TEDID): TDPMSCapabilities;
 var
   featureByte: Byte;
 begin
   Result := [];
-  featureByte := Ord(EDID[$18+1]);
+  featureByte := Ord(EDID[$18]);
   if featureByte and 128>0 then
     Result := Result + [capstandby];
   if featureByte and 64>0 then
@@ -250,20 +268,20 @@ begin
     Result := Result + [capPowerOnOff];
 end;
 
-function GetSerialFromEDID(const EDID: ansistring): ansistring;
+function GetSerialFromEDID(const EDID: TEDID): ansistring;
 begin
   // Serial number is prefixed by $000000FF
   Result := GetDescriptorBlockFromEDID(EDID, #$00#$00#$00#$FF);
 end;
 
-function GetModelFromEDID(const EDID: ansistring): ansistring;
+function GetModelFromEDID(const EDID: TEDID): ansistring;
 begin
   // Model name is prefixed by $000000FC
   Result := GetDescriptorBlockFromEDID(EDID, #$00#$00#$00#$FC);
 end;
 
 // Returns Vesa ID of manufacturer (3 caracteres) by parsing the EDID
-function GetManufacturerFromEDID(const EDID: ansistring): string;
+function GetManufacturerFromEDID(const EDID: TEDID): string;
 var
   Char1, Char2, Char3: Byte;
   Byte1, Byte2: Byte;
@@ -273,7 +291,8 @@ begin
   // It is coded on 3 caractères. Chaque character is coded on 5 bits
   // 1=A 2=B 3=C etc..
 
-  tmpEDIDMfg := Copy(EDID, $08+1, 2);
+  SetLength(tmpEDIDMfg, 2);
+  CopyMemory(@tmpEDIDMfg[1], @EDID[$08], 2);
 
   Byte1 := Ord(tmpEDIDMfg[1]); // Premier octet
   Byte2 := Ord(tmpEDIDMfg[2]); // Deuxième octet
@@ -446,15 +465,15 @@ end;
 // Retrives the EDID of deivice stored in registry key
 // HKLM\SYSTEM\CurrentControlSet\Enum\DISPLAY\DeviceParameters
 function TDiaporamaDeviceInfo.GetDisplayDeviceEDID(
-  const vesaID, pnpID: string): ansistring;
+  const aVesaID, aPnpID: string): TEDID;
 var
   aRegistry: TRegistry;
   key: string;
-  buffer: array[0..EDID_SIZE-1] of Byte;
+  buffer: TEDID;
   BufferSize: Integer;
   multiString: TStringList;
 begin
-  Result := '';
+  ZeroMemory(@buffer[0], EDID_SIZE);
   aRegistry := nil;
   multiString := nil;
   try
@@ -463,7 +482,7 @@ begin
     aRegistry.RootKey := HKEY_LOCAL_MACHINE;
 
     // MonitorID = <VESA_ID>\<PNP_ID>
-    key := Format(ENUM_DISPLAY_KEY, [vesaID + '\' + pnpID]);
+    key := ENUM_DISPLAY_KEY + '\' + aVesaID + '\' + aPnpID;
 
     if aRegistry.OpenKey(key, False) then
     begin
@@ -472,11 +491,10 @@ begin
         if aRegistry.ValueExists(EDID_VALUE) then
         begin
           bufferSize := aRegistry.ReadBinaryData(EDID_VALUE, buffer, EDID_SIZE);
-          SetLength(Result, bufferSize);
-          CopyMemory(@Result[1], @buffer[0], bufferSize);
         end;
       end;
     end;
+    Result := buffer;
   finally
     aRegistry.Free;
     multiString.Free;
@@ -484,33 +502,7 @@ begin
 end;
 
 function TDiaporamaDeviceInfo.IsActiveDisplayDevice(
-  const vesaID, pnpID: string): Boolean;
-var
-  aRegistry: TRegistry;
-  key: string;
-begin
-  Result := False;
-  aRegistry := nil;
-  try
-    aRegistry := TRegistry.Create;
-    aRegistry.Access := KEY_READ;
-    aRegistry.RootKey := HKEY_LOCAL_MACHINE;
-
-    // MonitorID = <VESA_ID>\<PNP_ID>
-    key := Format(ENUM_DISPLAY_KEY, [vesaID + '\' + pnpID]);
-
-    if aRegistry.OpenKey(key, False) then
-    begin
-      // the device display is active if we find the 'Control' registry sub key
-      Result := aRegistry.KeyExists(CONTROL_KEY);
-    end;
-  finally
-    aRegistry.Free;
-  end;
-end;
-
-function TDiaporamaDeviceInfo.IsDisplayDevice(
-  const vesaID, pnpID: string): Boolean;
+  const aVesaID, aPnpID: string): Boolean;
 var
   aRegistry: TRegistry;
   key, hardwareID: string;
@@ -525,7 +517,7 @@ begin
     aRegistry.RootKey := HKEY_LOCAL_MACHINE;
 
     // MonitorID = <VESA_ID>\<PNP_ID>
-    key := Format(ENUM_DISPLAY_KEY, [vesaID + '\' + pnpID]);
+    key := ENUM_DISPLAY_KEY + '\' + aVesaID + '\' + aPnpID;
 
     if aRegistry.OpenKey(key, False) then
     begin
@@ -536,8 +528,11 @@ begin
         ReadREG_MULTI_SZ(HKEY_LOCAL_MACHINE, key, HARDWARE_ID_VALUE, multiString);
         hardwareID := multiString[0];
 
-        Result := AnsiStartsStr('Monitor\', hardwareID);
+        Result := AnsiStartsText(cstMonitor + '\', hardwareID);
       end;
+
+      // the device display is active if we find the 'Control' registry sub key
+      Result := Result and aRegistry.KeyExists(CONTROL_KEY);
     end;
   finally
     aRegistry.Free;
@@ -546,34 +541,26 @@ begin
 end;
 
 // Main function to retrive device infos
-function TDiaporamaDeviceInfo.FindDeviceInfo(
-  const vesaID, pnpID: string): Boolean;
-var
-  EDID: ansistring;
+function TDiaporamaDeviceInfo.ExtractDeviceInfo(
+  const anEDID: TEDID): Boolean;
 begin
   Result := False;
 
-  // Retrive EDID (Extended Display Identification Data) for device
-  EDID := GetDisplayDeviceEDID(vesaID, pnpID);
+  // Model name
+  FModel := string(GetModelFromEDID(anEDID));
 
-  if EDID<>'' then
-  begin
-    // Model name
-    FModel := string(GetModelFromEDID(EDID));
+  // Mannufacturer name
+  FManufacturer := string(GetManufacturerFromEDID(anEDID));
 
-    // Mannufacturer name
-    FManufacturer := string(GetManufacturerFromEDID(EDID));
+  // Serial number
+  FSerial := string(GetSerialFromEDID(anEDID));
 
-    // Serial number
-    FSerial := string(GetSerialFromEDID(EDID));
+  // DPMS
+  FDPMSCapabilities := GetDPMSCapabilitiesFromEDID(anEDID);
 
-    // DPMS
-    FDPMSCapabilities := GetDPMSCapabilitiesFromEDID(EDID);
+  //Date := GetVersionFromEDID(EDID);
 
-    //Date := GetVersionFromEDID(EDID);
-
-    Result := True;
-  end;
+  Result := True;
 end;
 
 function TDiaporamaDeviceInfo.GetDisplayDeviceIDs(
@@ -589,33 +576,33 @@ begin
   while EnumDisplayDevicesEx(PChar(videoDeviceName), idd, dd, 0) do
   begin
     if dd.StateFlags and DISPLAY_DEVICE_ACTIVE>0 then
-        Result.Add(dd.DeviceID);
+      Result.Add(dd.DeviceID);
     Inc(idd);
   end;
 end;
 
 function TDiaporamaDeviceInfo.ParseDeviceID(const deviceID: string;
-  out vesaID, driver: string): Boolean;
+  out aVesaID, aDriver: string): boolean;
 var
   p1, p2: Integer;
 begin
   Result := False;
-  vesaID := '';
-  driver := '';
+  aVesaID := '';
+  aDriver := '';
   p1 := PosEx('\', deviceID, 2);
   if p1<>-1 then
   begin
     p2 := PosEx('\', deviceID, p1+1);
     if p2<>-1 then
     begin
-      vesaID := Copy(deviceID, p1+1, p2-1-(p1+1)+1);
-      driver := AnsiRightStr(deviceID, Length(deviceID)-(p2+1)+1);
+      aVesaID := Copy(deviceID, p1+1, p2-1-(p1+1)+1);
+      aDriver := AnsiRightStr(deviceID, Length(deviceID)-(p2+1)+1);
       Result := True;
     end;
   end;
 end;
 
-function TDiaporamaDeviceInfo.FindPnpID(const vesaID, driver: string): string;
+function TDiaporamaDeviceInfo.FindPnpID(const aVesaID, aDriver: string): string;
 var
   aRegistry: TRegistry;
   key, value: string;
@@ -630,7 +617,7 @@ begin
     aRegistry.Access := KEY_READ;
     aRegistry.RootKey := HKEY_LOCAL_MACHINE;
 
-    key := Format(ENUM_DISPLAY_KEY, [vesaID]);
+    key := ENUM_DISPLAY_KEY + '\' + aVesaID;
 
     if aRegistry.OpenKey(key, False) then
     begin
@@ -642,8 +629,8 @@ begin
       begin
         if aRegistry.OpenKey(key + '\' + names[i], False) then
         begin
-          value := aRegistry.ReadString(cstDriver);
-          if driver=value then
+          value := aRegistry.ReadString(DRIVER_VALUE);
+          if aDriver=value then
           begin
             Result := names[i];
             Exit;
@@ -674,7 +661,7 @@ begin
       Result := (dd.StateFlags and DISPLAY_DEVICE_MIRRORING_DRIVER=0) and
         (dd.StateFlags and DISPLAY_DEVICE_ATTACHED_TO_DESKTOP>0);
       LogEvent(Self.ClassName, ltInformation,
-        Format('Device flags ''%s'' : %d', [deviceName, dd.StateFlags]));
+        Format('Device ''%s'' flags: %d', [deviceName, dd.StateFlags]));
       Exit;
     end;
     Inc(idd);
@@ -684,8 +671,9 @@ end;
 function TDiaporamaDeviceInfo.FindDeviceInfo(const deviceName: string): Boolean;
 var
   deviceIDs: TStringList;
-  aVesaID, aDriver, aPnpID: string;
-  i: Integer;
+  aDeviceID, aVesaID, aDriver, aPnpID: string;
+  anEDID: TEDID;
+  logType: TLogType;
 begin
   Result := False;
 
@@ -698,29 +686,42 @@ begin
     try
       deviceIDs := GetDisplayDeviceIDs(deviceName);
 
-      for i := 0 to deviceIDs.Count-1 do
+      LogEvent(Self.ClassName, ltInformation,
+          Format('Device %s, ID(s): %s', [deviceName, deviceIDs.CommaText]));
+
+      // Looking for EDID (Extended Display Identification Data) in registry, in
+      // System\CurrentControlSet\Display\<vesaID>\<pnpID>
+      for aDeviceID in deviceIDs do
       begin
-        if ParseDeviceID(deviceIDs[i], aVesaID, aDriver) then
+        if ParseDeviceID(aDeviceID, aVesaID, aDriver) then
         begin
           aPnpID := FindPnpID(aVesaID, aDriver);
 
-          if IsDisplayDevice(aVesaID, aPnpID) then
+          if IsActiveDisplayDevice(aVesaID, aPnpID) then
           begin
-            if IsActiveDisplayDevice(aVesaID, aPnpID) then
-            begin
-              FVesaID := aVesaID;
-              FPnpID := aPnpID;
-              Break;
-            end;
+            FVesaID := aVesaID;
+            FPnpID := aPnpID;
+
+            // we have VesaID and PnpID, we get the EDID for device
+            anEDID := GetDisplayDeviceEDID(FVesaID, FPnpID);
+
+            // Extract manufacturer, model, serial infos from EDID
+            Result := ExtractDeviceInfo(anEDID);
           end;
         end;
       end;
+
+      if (FVesaID='') or (FPnpID='') then
+        logType := ltWarning
+      else
+        logType := ltInformation;
+      LogEvent(Self.ClassName, logType,
+          Format('Device %s (VesaID=%s, PnpID=%s), EDID=%s',
+            [deviceName, FVesaID, FPnpID, EDIDToString(anEDID)]));
+
     finally
       deviceIDs.Free;
     end;
-
-    if (FVesaID<>'') and (FPnpID<>'') then
-      Result := FindDeviceInfo(FVesaID, FPnpID);
   end;
 end;
 
