@@ -3,7 +3,7 @@
 <tr>
 
 <td>
-<p>Devices</p>
+<p><bold>Devices</bold></p>
 <a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Devices.png">
 <img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Devices.png"/>
 </a>
