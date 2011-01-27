@@ -4,18 +4,24 @@
 <img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Devices.png"/>
 </a>
 
-<img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Devices.png" />
-
 *Diaporamas*
 
-<img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Diaporamas.png" />
+<a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Diaporamas.png">
+<img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Diaporamas.png"/>
+</a>
 
 *Schedule*
 
-<img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Schedule.png" />`
+<a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Schedule.png">
+<img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Schedule.png"/>
+</a>
 
 *Settings*
 
-<img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Settings_Paths.png" />`
+<a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Settings_Paths.png">
+<img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Settings_Paths.png"/>
+</a>
 
-<img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Settings_Download.png" />`
+<a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Settings_Download.png">
+<img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Settings_Download.png"/>
+</a>
