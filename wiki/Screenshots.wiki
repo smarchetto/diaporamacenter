@@ -1,6 +1,6 @@
 *Devices*
 
-<img width=240 height=320src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Devices.png" />
+<img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Devices.png" />
 
 *Diaporamas*
 
