@@ -1,27 +1,45 @@
-*Devices*
+<table>
 
+<tr>
+
+<td>
+<p>Devices</p>
 <a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Devices.png">
 <img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Devices.png"/>
 </a>
+</td>
 
-*Diaporamas*
-
+<td>
+<p>Diaporamas</p>
 <a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Diaporamas.png">
 <img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Diaporamas.png"/>
 </a>
+</td>
 
-*Schedule*
+</tr>
+<tr>
 
+<td>
+<p>Schedule</p>
 <a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Schedule.png">
 <img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Schedule.png"/>
 </a>
+</td>
 
-*Settings*
+</tr>
+<tr>
 
+<td>
+<p>Settings</p>
 <a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Settings_Paths.png">
 <img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Settings_Paths.png"/>
 </a>
+</td>
 
+<td>
 <a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Settings_Download.png">
 <img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Settings_Download.png"/>
 </a>
+</td>
+
+</tr>
