@@ -10,7 +10,7 @@
 </td>
 
 <td>
-<p>Diaporamas</p>
+<p><b>Diaporamas</b></p>
 <a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Diaporamas.png">
 <img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Diaporamas.png"/>
 </a>
@@ -20,7 +20,7 @@
 <tr>
 
 <td>
-<p>Schedule</p>
+<p><b>Schedule</b></p>
 <a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Schedule.png">
 <img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Schedule.png"/>
 </a>
@@ -30,7 +30,7 @@
 <tr>
 
 <td>
-<p>Settings (paths)</p>
+<p><b>Settings</b> (paths)</p>
 <a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Settings_Paths.png">
 <img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Settings_Paths.png"/>
 </a>
