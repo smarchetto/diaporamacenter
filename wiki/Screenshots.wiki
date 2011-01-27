@@ -37,7 +37,7 @@
 </td>
 
 <td>
-<p></p>
+<p> </p>
 <a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Settings_Download.png">
 <img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Settings_Download.png"/>
 </a>
