@@ -30,14 +30,14 @@
 <tr>
 
 <td>
-<p>Settings</p>
+<p>Settings (paths)</p>
 <a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Settings_Paths.png">
 <img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Settings_Paths.png"/>
 </a>
 </td>
 
 <td>
-<p> </p>
+<p>(download)</p>
 <a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Settings_Download.png">
 <img width=240 height=320 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/DiaporamaCenter_Settings_Download.png"/>
 </a>
