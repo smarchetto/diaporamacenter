@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{4FB5A5D3-FE64-4D51-8B60-1F863468D344}</ProjectGuid>
 			<MainSource>DsgnCPort12.dpk</MainSource>
-			<Config Condition="'$(Config)'==''">Release</Config>
+			<Config Condition="'$(Config)'==''">Debug</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
 		</PropertyGroup>
@@ -23,7 +23,6 @@
 			<DesignOnlyPackage>true</DesignOnlyPackage>
 			<DCC_WriteableConstants>true</DCC_WriteableConstants>
 			<DCC_Description>ComPort Library - Designtime Package - Dejan Crnila - Mod by Warren Postma (Delphi 2009)</DCC_Description>
-			<DCC_DependencyCheckOutputName>D:\Development\6.5\Configuration\Product\Dll\DsgnCPort12.bpl</DCC_DependencyCheckOutputName>
 			<GenDll>true</GenDll>
 			<DCC_OutputNeverBuildDcps>true</DCC_OutputNeverBuildDcps>
 			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
@@ -32,6 +31,7 @@
 			<DCC_Platform>x86</DCC_Platform>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_UnitSearchPath>..\..\..\..\lib\release;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_DependencyCheckOutputName>..\..\..\..\lib\release\DsgnCPort12.bpl</DCC_DependencyCheckOutputName>
 			<DCC_BplOutput>..\..\..\..\lib\release</DCC_BplOutput>
 			<DCC_DcpOutput>..\..\..\..\lib\release</DCC_DcpOutput>
@@ -41,6 +41,7 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_UnitSearchPath>..\..\..\..\lib\debug;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_BplOutput>..\..\..\..\lib\debug</DCC_BplOutput>
 			<DCC_DependencyCheckOutputName>..\..\..\..\lib\debug\DsgnCPort12.bpl</DCC_DependencyCheckOutputName>
 			<DCC_DcpOutput>..\..\..\..\lib\debug</DCC_DcpOutput>
@@ -110,9 +111,7 @@
 						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
 						<VersionInfoKeys Name="Comments"/>
 					</VersionInfoKeys>
-					<Excluded_Packages>
-						<Excluded_Packages Name="$(BDS)\bin\dcl31w120.bpl">Delphi 1.0 Compatibility Components</Excluded_Packages>
-					</Excluded_Packages>
+					<Excluded_Packages/>
 				</Delphi.Personality>
 			</BorlandProject>
 			<ProjectFileVersion>12</ProjectFileVersion>

@@ -29,11 +29,9 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1)'!=''">
 			<DCC_DebugDCUs>false</DCC_DebugDCUs>
-			<DCC_UnitSearchPath>.\Components\MSXML;.\Components\AFPElog;.\Components\ComPort;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_UnitSearchPath>.\Components\MSXML;.\Components\AFPElog;..\lib\release;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_DependencyCheckOutputName>..\bin\release\DiaporamaCenter.exe</DCC_DependencyCheckOutputName>
 			<DCC_ExeOutput>..\bin\release</DCC_ExeOutput>
-			<DCC_BplOutput>..\bin\release</DCC_BplOutput>
-			<DCC_DcpOutput>..\lib\release</DCC_DcpOutput>
 			<Version>7.0</Version>
 			<DCC_DebugInformation>False</DCC_DebugInformation>
 			<DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
@@ -42,13 +40,11 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
 			<DCC_DebugDCUs>true</DCC_DebugDCUs>
-			<DCC_BplOutput>..\lib\debug</DCC_BplOutput>
-			<DCC_DcpOutput>..\lib\debug</DCC_DcpOutput>
 			<DCC_DependencyCheckOutputName>..\bin\debug\DiaporamaCenter.exe</DCC_DependencyCheckOutputName>
 			<Version>7.0</Version>
 			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
 			<DCC_ExeOutput>..\bin\debug</DCC_ExeOutput>
-			<DCC_UnitSearchPath>$(BDS)\lib\Debug;$(BDS)\Lib\Debug\Indy10;.\Components\MSXML;.\Components\AFPElog;.\Components\ComPort;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_UnitSearchPath>.\Components\MSXML;.\Components\AFPElog;..\lib\debug;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_ResourcePath>$(BDS)\lib\Debug;$(BDS)\Lib\Debug\Indy10;.\Components\MSXML;.\Components\AFPElog;.\Components\ComPort;$(DCC_ResourcePath)</DCC_ResourcePath>
 			<DCC_ObjPath>$(BDS)\lib\Debug;$(BDS)\Lib\Debug\Indy10;.\Components\MSXML;.\Components\AFPElog;.\Components\ComPort;$(DCC_ObjPath)</DCC_ObjPath>
 			<DCC_IncludePath>$(BDS)\lib\Debug;$(BDS)\Lib\Debug\Indy10;.\Components\MSXML;.\Components\AFPElog;.\Components\ComPort;$(DCC_IncludePath)</DCC_IncludePath>
@@ -75,7 +71,7 @@
 						<VersionInfo Name="MajorVer">1</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">72</VersionInfo>
+						<VersionInfo Name="Build">77</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -87,7 +83,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName"/>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">1.0.0.72</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.0.0.77</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>

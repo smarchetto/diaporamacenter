@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{3D5E0B22-5F8C-4257-9641-EA745F61677B}</ProjectGuid>
 			<MainSource>CPortLib12.dpk</MainSource>
-			<Config Condition="'$(Config)'==''">Release</Config>
+			<Config Condition="'$(Config)'==''">Debug</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
 		</PropertyGroup>
@@ -21,7 +21,6 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
 			<DesignOnlyPackage>false</DesignOnlyPackage>
-			<DCC_DependencyCheckOutputName>D:\Development\6.5\Configuration\Product\Dll\CPortLib12.bpl</DCC_DependencyCheckOutputName>
 			<DCC_Define>CPORT_OVERLAPPED_API;$(DCC_Define)</DCC_Define>
 			<DCC_Description>ComPort Library - Runtime Package - Dejan Crnila - Mod by Warren Postma (Delphi 2009)</DCC_Description>
 			<RuntimeOnlyPackage>true</RuntimeOnlyPackage>
