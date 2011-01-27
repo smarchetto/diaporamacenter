@@ -113,11 +113,10 @@ begin
   FDiaporamaCenterAgent := diaporamaCenter;
 
   BuildGUI;
-  FSavedSchedule := FDiaporamaCenterAgent.Scheduler.Copy;
-
-  FEditedSchedule := nil;
   RefreshGUI;
+
   FEditedSchedule := FDiaporamaCenterAgent.Scheduler.Copy;
+  FSavedSchedule := FDiaporamaCenterAgent.Scheduler.Copy;
 end;
 
 destructor TFrameDiaporamaScheduler.Destroy;
@@ -141,12 +140,12 @@ begin
     'Power on/off all devices', LEFT1, y, True);
   aLabel.Font.Color := clBackGround;
 
-  // Mise en marche automatique de tous les videoprojecteurs
+  // Auto power on all devices
   Inc(y, DELTA_TOP);
   CreateScheduleActionGUI('PowerOnAllDevices', 'Power on:', cstPeriodicityStr,
     'à :', '08:00', pnlDevice, y, aTabOrder);
 
-  // Mise en arret automatique de tous les videoprojecteurs
+  // Auto power off all devices
   Inc(y, DELTA_TOP);
   CreateScheduleActionGUI('PowerOffAllDevices', 'Power off:', cstPeriodicityStr,
     'à :', '23:00', pnlDevice, y, aTabOrder);
