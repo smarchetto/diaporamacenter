@@ -2,9 +2,9 @@
 <DiapositiveTypes>
   <DiapositiveType>
 	<Name>ExistingHomeSales</Name>
-	<URL>http://matheric.tomson.free.fr/diaporamacentertest/existinghomesales/%s</URL>
+	<URL>http://matheric.tomson.free.fr/DiaporamaCenter/FantasticEstateAgency/existinghomesales/%s</URL>
 	<MediaMark>image</MediaMark>
-    <MediaURL>http://matheric.tomson.free.fr/diaporamacentertest/existinghomesales/images/%s</MediaURL>
+    <MediaURL>http://matheric.tomson.free.fr/DiaporamaCenter/FantasticEstateAgency/existinghomesales/images/%s</MediaURL>
 	<MediaDir>images</MediaDir>
 	<Resource id="slide.css"/>
 	<Resource id="border.jpg"/>
