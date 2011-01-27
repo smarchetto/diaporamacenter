@@ -3,14 +3,14 @@
 			<ProjectGuid>{0EBC10C9-A89A-4CF2-885B-13F09B2CC200}</ProjectGuid>
 		</PropertyGroup>
 		<ItemGroup>
-			<Projects Include="DiaporamaCenter.dproj">
-				<Dependencies/>
-			</Projects>
 			<Projects Include="Components\ComPort\Source\CPortLib12.dproj">
 				<Dependencies/>
 			</Projects>
 			<Projects Include="Components\ComPort\Source\DsgnCPort12.dproj">
-				<Dependencies/>
+				<Dependencies>Components\ComPort\Source\CPortLib12.dproj</Dependencies>
+			</Projects>
+			<Projects Include="DiaporamaCenter.dproj">
+				<Dependencies>Components\ComPort\Source\CPortLib12.dproj;Components\ComPort\Source\DsgnCPort12.dproj</Dependencies>
 			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
@@ -20,15 +20,6 @@
 				<Default.Personality/>
 			</BorlandProject>
 		</ProjectExtensions>
-		<Target Name="DiaporamaCenter">
-			<MSBuild Projects="DiaporamaCenter.dproj"/>
-		</Target>
-		<Target Name="DiaporamaCenter:Clean">
-			<MSBuild Targets="Clean" Projects="DiaporamaCenter.dproj"/>
-		</Target>
-		<Target Name="DiaporamaCenter:Make">
-			<MSBuild Targets="Make" Projects="DiaporamaCenter.dproj"/>
-		</Target>
 		<Target Name="CPortLib12">
 			<MSBuild Projects="Components\ComPort\Source\CPortLib12.dproj"/>
 		</Target>
@@ -38,23 +29,32 @@
 		<Target Name="CPortLib12:Make">
 			<MSBuild Targets="Make" Projects="Components\ComPort\Source\CPortLib12.dproj"/>
 		</Target>
-		<Target Name="DsgnCPort12">
+		<Target DependsOnTargets="CPortLib12" Name="DsgnCPort12">
 			<MSBuild Projects="Components\ComPort\Source\DsgnCPort12.dproj"/>
 		</Target>
-		<Target Name="DsgnCPort12:Clean">
+		<Target DependsOnTargets="CPortLib12:Clean" Name="DsgnCPort12:Clean">
 			<MSBuild Targets="Clean" Projects="Components\ComPort\Source\DsgnCPort12.dproj"/>
 		</Target>
-		<Target Name="DsgnCPort12:Make">
+		<Target DependsOnTargets="CPortLib12:Make" Name="DsgnCPort12:Make">
 			<MSBuild Targets="Make" Projects="Components\ComPort\Source\DsgnCPort12.dproj"/>
 		</Target>
+		<Target DependsOnTargets="CPortLib12;DsgnCPort12" Name="DiaporamaCenter">
+			<MSBuild Projects="DiaporamaCenter.dproj"/>
+		</Target>
+		<Target DependsOnTargets="CPortLib12:Clean;DsgnCPort12:Clean" Name="DiaporamaCenter:Clean">
+			<MSBuild Targets="Clean" Projects="DiaporamaCenter.dproj"/>
+		</Target>
+		<Target DependsOnTargets="CPortLib12:Make;DsgnCPort12:Make" Name="DiaporamaCenter:Make">
+			<MSBuild Targets="Make" Projects="DiaporamaCenter.dproj"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="DiaporamaCenter;CPortLib12;DsgnCPort12"/>
+			<CallTarget Targets="CPortLib12;DsgnCPort12;DiaporamaCenter"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="DiaporamaCenter:Clean;CPortLib12:Clean;DsgnCPort12:Clean"/>
+			<CallTarget Targets="CPortLib12:Clean;DsgnCPort12:Clean;DiaporamaCenter:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="DiaporamaCenter:Make;CPortLib12:Make;DsgnCPort12:Make"/>
+			<CallTarget Targets="CPortLib12:Make;DsgnCPort12:Make;DiaporamaCenter:Make"/>
 		</Target>
 		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 	</Project>
