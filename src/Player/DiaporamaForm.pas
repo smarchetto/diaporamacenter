@@ -102,10 +102,10 @@ var
   HTaskbar: HWND;
   OldVal: LongInt;
 begin
-  // Simulation d'un ecran de veille
+  // We are in screensaver mode, so that another screensaver can't take over us
   SystemParametersInfo(SPI_SCREENSAVERRUNNING, Word(True), @OldVal, 0);
 
-  // Désactivation et masquage de la barre des taches
+  // Deactivate and hide the Windows taskbar
   if FMonitor.Primary then
   begin
     HTaskBar := FindWindow('Shell_TrayWnd', nil);
@@ -113,12 +113,9 @@ begin
     ShowWindow(HTaskbar, SW_HIDE);
   end;
 
-  // Plus de bordures et au dessus quoiqu'il arrive
+  // No borders on window
   BorderStyle := bsNone;
   FormStyle := fsStayOnTop;
-
-  // On occupe tout l'écran
-  PlaceOnMonitor;
 
   //SetBounds(0, 0, Screen.Width, Screen.Height);
   FFullScreen := True;
@@ -129,10 +126,10 @@ var
   HTaskbar: HWND;
   OldVal: LongInt;
 begin
-  // On sort de l'état d'écran de veille
+  // Get out of screen saver mode
   SystemParametersInfo(SPI_SCREENSAVERRUNNING, Word(False), @OldVal, 0);
 
-  // Activation et affichage de la barre des taches
+  // Activate and hide the Windows task bar
   if FMonitor.Primary then
   begin
     HTaskBar := FindWindow('Shell_TrayWnd', nil);
@@ -140,11 +137,11 @@ begin
     ShowWindow(HTaskbar, SW_SHOW);
   end;
 
-  // Fenetre redimensionnable
+  // Border on windows, and we can resize
   BorderStyle := bsSizeable;
   FormStyle := fsNormal;
 
-  // On occupe tout de meme tout l'ecran
+  // Maximize
   WindowState := wsMaximized;
 
   // Focus
@@ -157,6 +154,9 @@ end;
 procedure TDiaporamaForm.Show;
 begin
   inherited;
+
+  PlaceOnMonitor;
+
   if InitialFullScreen then
     SetFullScreen;
   FWebDiapositiveFrame.Show;
