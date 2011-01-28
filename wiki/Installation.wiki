@@ -1,7 +1,5 @@
 #summary How to install DiaporamaCenter
 
-There is no setup file yet, but the installation is quite easy.
+Simply run the setup file, and follow the instructions.
 
- # Extract the DiaporamaCenter 7z archive into the folder of your choice
- # Run DiaporamaCenter.exe that is in the folder.
- # If an error message tells you that MSXML library needs to be installed, click on the msxml.msi that is in the folder, and follow the instructions.
+Note: the DiaporamaCenter setup will also install the MSXML 4.0 SP3 library.  The installation of this library needs the system to be restarted. 
