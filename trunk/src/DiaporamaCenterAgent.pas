@@ -162,8 +162,8 @@ begin
     CoDOMDocument40.Create;
   except
     raise Exception.Create(
-      'DiaporamaCenter needs MSXML4 to run.' + #13#10
-      + 'Please install ''mxsml4cab.exe'' that can be found in application folder.');
+      'DiaporamaCenter needs the MSXML4 library to be installed.' + #13#10
+      + 'Please run the setup again to install this library.');
   end;
 end;
 
