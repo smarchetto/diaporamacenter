@@ -15,45 +15,57 @@ AppSupportURL=http://code.google.com/p/diaporamacenter/
 AppUpdatesURL=http://code.google.com/p/diaporamacenter/
 DefaultDirName={pf}\DiaporamaCenter
 DefaultGroupName=DiaporamaCenter
-OutputDir=E:\Dev\Sources\Diaporama\DiaporamaCenter\trunk\bin\setup
+OutputDir=..\bin\setup
 OutputBaseFilename=DiaporamaCenter_1.0.1_Setup
 Compression=lzma
 SolidCompression=yes
+DisableDirPage=true
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+Name: "allUsers"; Description: "&All users"; GroupDescription: "Install for:"; Flags: exclusive unchecked
+Name: "currentUser";  Description: "Just &me"; GroupDescription: "Install for:"; Flags: exclusive
 
 [Types]
 Name: "full"; Description: "Binaries and samples"
 Name: "binaries"; Description: "Binaries only"
 
 [Components]
-Name: "program"; Description: "Program Files"; Types: full binaries; Flags: fixed
+Name: "program"; Description: "Program files"; Types: full binaries; Flags: fixed
 Name: "samples"; Description: "Sample files"; Types: full;
 
 [Files]
 ; program
-Source: "E:\Dev\Sources\Diaporama\DiaporamaCenter\trunk\bin\release\DiaporamaCenter.exe"; DestDir: "{app}"; Components: program; Flags: ignoreversion
-Source: "E:\Dev\Sources\Diaporama\DiaporamaCenter\trunk\setup\rtl120.bpl"; DestDir: "{app}"; Components: program; Flags: ignoreversion
-Source: "E:\Dev\Sources\Diaporama\DiaporamaCenter\trunk\setup\vcl120.bpl"; DestDir: "{app}"; Components: program; Flags: ignoreversion
-Source: "E:\Dev\Sources\Diaporama\DiaporamaCenter\trunk\3rd\msxml.msi"; DestDir: "{tmp}"; Components: program; Flags: ignoreversion
-Source: "E:\Dev\Sources\Diaporama\DiaporamaCenter\trunk\lib\release\CPortLib12.bpl"; DestDir: "{app}"; Components: program; Flags: ignoreversion
-Source: "E:\Dev\Sources\Diaporama\DiaporamaCenter\trunk\data\DiaporamaCenter.xml"; Components: program; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\bin\release\DiaporamaCenter.exe"; DestDir: "{code:getAppData}\DiaporamaCenter"; Components: program; Flags: ignoreversion
+Source: "rtl120.bpl"; DestDir: "{code:getAppData}\DiaporamaCenter"; Components: program; Flags: ignoreversion
+Source: "vcl120.bpl"; DestDir: "{code:getAppData}\DiaporamaCenter"; Components: program; Flags: ignoreversion
+Source: "..\lib\release\CPortLib12.bpl"; DestDir: "{code:getAppData}\DiaporamaCenter"; Components: program; Flags: ignoreversion
+Source: "..\3rd\msxml.msi"; DestDir: "{tmp}"; Components: program; Flags: ignoreversion
+Source: "..\data\DiaporamaCenter.xml"; DestDir: "{code:getAppData}\DiaporamaCenter"; Components: program;  Flags: ignoreversion
 
 ;samples
-Source: "E:\Dev\Sources\Diaporama\DiaporamaCenter\trunk\data\FantasticEstateAgency\*"; Components: samples; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
+Source: "..\data\FantasticEstateAgency\*"; DestDir: "{code:getAppData}\DiaporamaCenter"; Components: samples; Flags: ignoreversion recursesubdirs
 
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+; NOTE: Don't use Flags: ignoreversion on any shared system files
 
 [Icons]
-Name: "{group}\DiaporamaCenter"; Filename: "{app}\DiaporamaCenter.exe"
+Name: "{group}\DiaporamaCenter"; Filename: "{code:getAppData}\DiaporamaCenter"
 Name: "{group}\{cm:UninstallProgram,DiaporamaCenter}"; Filename: "{uninstallexe}"
-Name: "{commondesktop}\DiaporamaCenter"; Filename: "{app}\DiaporamaCenter.exe"; Tasks: desktopicon
+Name: "{commondesktop}\DiaporamaCenter"; Filename: "{code:getAppData}\\DiaporamaCenter\DiaporamaCenter.exe"; Tasks: desktopicon
 
 [Run]
-Filename: "msiexec.exe"; Parameters: "/i ""{tmp}\msxml.msi"""
-Filename: "{app}\DiaporamaCenter.exe"; Description: "{cm:LaunchProgram,DiaporamaCenter}"; Flags: nowait postinstall skipifsilent
+Filename: "msiexec.exe"; Parameters: "/i {tmp}\msxml.msi"
+Filename: "{code:getAppData}\DiaporamaCenter\DiaporamaCenter.exe"; Description: "{cm:LaunchProgram,DiaporamaCenter}"; Flags: nowait postinstall skipifsilent
+
+[Code]
+function getAppData(param: string): string;
+begin
+  if IsTaskSelected('allUsers') then
+    Result := ExpandConstant('{commonappdata}')
+  else
+    Result := ExpandConstant('{localappdata}')
+end;
 
