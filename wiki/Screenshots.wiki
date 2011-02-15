@@ -43,16 +43,16 @@
 
 <tr>
 <td>
-<p><b>FantasticEstateAgency sample</b> (Gingerbread House slide)</p>
-<a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/FantasticEstateAgencySample1.jpg">
-<img width=320 height=240 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/FantasticEstateAgencySample1.jpg"/>
+<p><b>FantasticEstateAgency sample</b> (slide 1)</p>
+<a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/FantasticEstateAgencySample1.png">
+<img width=320 height=240 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/FantasticEstateAgencySample1.png"/>
 </a>
 </td>
 
 <td>
-<p>(Dracula Castle slide)</p>
-<a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/FantasticEstateAgencySample2.jpg">
-<img width=320 height=240 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/FantasticEstateAgencySample2.jpg"/>
+<p>(slide 2)</p>
+<a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/FantasticEstateAgencySample2.png">
+<img width=320 height=240 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/FantasticEstateAgencySample2.png"/>
 </a>
 </td>
 </tr>
