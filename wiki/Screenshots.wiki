@@ -43,14 +43,14 @@
 
 <tr>
 <td>
-<p><b>FantasticEstateAgency sample</b>Gingerbread House</p>
+<p><b>FantasticEstateAgency sample</b> (Gingerbread House slide)</p>
 <a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/FantasticEstateAgencySample1.jpg">
 <img width=320 height=240 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/FantasticEstateAgencySample1.jpg"/>
 </a>
 </td>
 
 <td>
-<p>Dracula Castle</p>
+<p>(Dracula Castle slide)</p>
 <a href="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/FantasticEstateAgencySample2.jpg">
 <img width=320 height=240 src="http://matheric.tomson.free.fr/DiaporamaCenter/Screenshots/FantasticEstateAgencySample2.jpg"/>
 </a>
