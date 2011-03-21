@@ -6,9 +6,9 @@ DiaporamaCenter is a multi display application. It manages the displays in an in
 
 == Videoprojectors ==
 Videoprojectors are special devices, they
-have a limited life of , so they need to be shut down (or put in stand by), when they are not used.
-Most of videoprojectors are controllable by the COM port. DiaporamaCenter is able to control videoprojectors that way. The user has to enter
-
+have a limited life of bulb, so they need to be shut down (or put in stand by) as soon as they are not used.
+Most of videoprojectors are controllable through a serial link. DiaporamaCenter can use that way to switch on/off automatically videoprojectors. The user enters once the command codes for a videoprojector, and saves them in the configuration file. Then, each time that videprojector is identified, DiaporamaCenter automatically loads that configuration file, and the videoprojector is ready to be controlled.
+ 
 == Diaporamas ==
 A diaporama is a set of slides displayed on one device. As they are HTML based, slides can contain any kind of media. Each slide is generated from the a fragment of data contained in the diaporama file, and the slide's template.
 Diaporamas can contain slides of different template.
