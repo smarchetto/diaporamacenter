@@ -2,7 +2,7 @@
 == Display devices ==
 DiaporamaCenter is a multi display application. It manages the displays in an independent way :
 - it is able to play & stop one different slide show on each display
-- it can power on / off each device separately (this feature may depends on the OS)
+- it can power on / off each device separately (this feature may depends on the OS).
 
 == Videoprojectors ==
 Videoprojectors are special devices, they
