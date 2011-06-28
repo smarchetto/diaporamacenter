@@ -45,10 +45,10 @@ Source: "rtl120.bpl"; DestDir: {code:GetAppDir}; Components: program; Flags: ign
 Source: "vcl120.bpl"; DestDir: {code:GetAppDir}; Components: program; Flags: ignoreversion
 Source: "..\lib\release\CPortLib12.bpl"; DestDir: {code:GetAppDir}; Components: program; Flags: ignoreversion
 Source: "..\3rd\msxml.msi"; DestDir: {tmp}; Components: program; Flags: ignoreversion
-Source: "..\data\DiaporamaCenter.xml"; DestDir: {code:GetAppDir}; Components: program;  Flags: ignoreversion
+Source: "..\dat\DiaporamaCenter.xml"; DestDir: {code:GetAppDir}; Components: program;  Flags: ignoreversion
 
 ;samples
-Source: "..\data\FantasticEstateAgency\*"; DestDir: {code:GetAppDir}; Components: samples; Flags: ignoreversion recursesubdirs
+Source: "..\dat\FantasticEstateAgency\*"; DestDir: {code:GetAppDir}; Components: samples; Flags: ignoreversion recursesubdirs
 
 ; NOTE: Don't use Flags: ignoreversion on any shared system files
 
