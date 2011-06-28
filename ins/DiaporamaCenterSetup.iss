@@ -44,7 +44,7 @@ Source: "..\bin\release\{#MyAppExe}"; DestDir: {code:GetAppDir}; Components: pro
 Source: "rtl120.bpl"; DestDir: {code:GetAppDir}; Components: program; Flags: ignoreversion
 Source: "vcl120.bpl"; DestDir: {code:GetAppDir}; Components: program; Flags: ignoreversion
 Source: "..\lib\release\CPortLib12.bpl"; DestDir: {code:GetAppDir}; Components: program; Flags: ignoreversion
-Source: "..\3rd\msxml.msi"; DestDir: {tmp}; Components: program; Flags: ignoreversion
+Source: "..\3dp\msxml.msi"; DestDir: {tmp}; Components: program; Flags: ignoreversion
 Source: "..\dat\DiaporamaCenter.xml"; DestDir: {code:GetAppDir}; Components: program;  Flags: ignoreversion
 
 ;samples
